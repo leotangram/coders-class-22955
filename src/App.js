@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Dog from "./components/Dog";
 
 function App() {
+  const dogs = [
+    { name: "Snickers", age: 2 },
+    { name: "Buddy2", age: 8 },
+    { name: "Buddy3", age: 8 },
+  ];
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Hello Coders</h1>
+      <hr />
+      {dogs.map(({ name, age }) => (
+        <Dog key={name} name={name} age={age} />
+      ))}
     </div>
   );
 }
