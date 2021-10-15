@@ -1,6 +1,10 @@
 import { Component } from "react";
 
 class ClassComponent extends Component {
+  // componentDidMount() {
+  //   console.log("Hola, se renderizó este componente de clase, por primera vez");
+  // }
+
   render() {
     const { hello, showMessage } = this.props;
 

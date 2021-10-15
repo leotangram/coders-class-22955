@@ -1,5 +1,17 @@
-const FunctionalCommponent = ({ hello, setName, showMessage }) => {
+import { useEffect } from "react";
+
+const FunctionalCommponent = ({ hello, setName, showMessage, name }) => {
   const handleName = () => setName("Leo");
+
+  useEffect(() => {
+    return () => {
+      console.log("Componente destruido");
+    };
+  }, []);
+
+  // useEffect(() => {
+  //   setName(Math.random().toString());
+  // }, [name]);
 
   return (
     <div>
