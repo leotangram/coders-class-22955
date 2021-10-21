@@ -1,24 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+
+const CHARACTER = "character";
+const EPISODES = "episodes";
+const LOCATIONS = "locations";
+const PATH = "https://rickandmortyapi.com/api";
 
 const ItemListContainer = ({ children, greeting, name }) => {
-  console.log("Solo log");
+  const [characters, setCharacters] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    console.log("Sin dependencias");
-  });
+    fetch(`${PATH}/${CHARACTER}?page=${currentPage}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((result) => {
+        const { results } = result;
+        setCharacters(results);
+      });
+  }, [currentPage]);
 
-  useEffect(() => {
-    console.log("Con dependencias vacías");
-  }, []);
-
-  useEffect(() => {
-    console.log("Con dependencias");
-  }, [name]);
+  const handlePage = () => setCurrentPage(currentPage + 1);
 
   return (
     <div>
       <h3>{greeting}</h3>
       {children}
+      <button onClick={handlePage}>Next</button>
+      <ul>
+        {characters.map(({ id, name, image }) => (
+          <li key={id}>
+            <h3>{name}</h3>
+            <img src={image} alt={name} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
