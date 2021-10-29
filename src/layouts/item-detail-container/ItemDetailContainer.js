@@ -2,14 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "../../components/item-detail/ItemDetail";
 import ResizeComponent from "../../components/ResizeComponent";
-// import { debounce } from "../../helpers/debounce";
-
-// const item = {
-//   id: "2",
-//   name: "Zapatilla",
-//   description: "Zapatilla talle 40",
-//   stock: 2,
-// };
 
 function ItemDetailContainer() {
   const { itemId } = useParams();
@@ -35,6 +27,10 @@ function ItemDetailContainer() {
 
   return (
     <div>
+      {/* Consumer */}
+      {/* <CartContext.Consumer>
+        {(isTrue) => <h1>isTrue: {isTrue}</h1>}
+      </CartContext.Consumer> */}
       <h1>ItemDetailContainer</h1>
       <ResizeComponent />
       <ItemDetail
