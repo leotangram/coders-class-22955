@@ -29,18 +29,8 @@ const NavBar = () => {
                 </NavLink>
               </NavDropdown.Item>
               <NavDropdown.Item>
-                <NavLink to="/category/cars" activeClassName="selected">
-                  Carros
-                </NavLink>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <NavLink to="/category/video-games" activeClassName="selected">
-                  Video juegos
-                </NavLink>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <NavLink to="/category/apparel" activeClassName="selected">
-                  Video juegos
+                <NavLink to="/category/phones" activeClassName="selected">
+                  Teléfonos
                 </NavLink>
               </NavDropdown.Item>
             </NavDropdown>

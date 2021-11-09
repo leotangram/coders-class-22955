@@ -1,24 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "../../components/item-detail/ItemDetail";
-import ResizeComponent from "../../components/ResizeComponent";
+import { getFirestore } from "../../firebase";
 
 function ItemDetailContainer() {
   const { itemId } = useParams();
 
   const [item, setItem] = useState(null);
   const [quantity, setQuantity] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (itemId) {
-      fetch(`https://rickandmortyapi.com/api/character/${itemId}`)
-        .then((response) => {
-          return response.json();
-        })
-        .then((result) => {
-          setItem(result);
-        });
-    }
+    const db = getFirestore();
+    const itemCollection = db.collection("products");
+    const currentItem = itemCollection.doc(itemId);
+
+    currentItem
+      .get()
+      .then((document) => {
+        if (!document.exists) {
+          console.log("No item");
+          return;
+        }
+        setItem({ id: document, ...document.data() });
+      })
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false));
   }, [itemId]);
 
   if (!item) {
@@ -27,18 +34,17 @@ function ItemDetailContainer() {
 
   return (
     <div>
-      {/* Consumer */}
-      {/* <CartContext.Consumer>
-        {(isTrue) => <h1>isTrue: {isTrue}</h1>}
-      </CartContext.Consumer> */}
       <h1>ItemDetailContainer</h1>
-      <ResizeComponent />
-      <ItemDetail
-        name={item.name}
-        {...item}
-        quantity={quantity}
-        setQuantity={setQuantity}
-      />
+      {loading ? (
+        <h2>Cargando...</h2>
+      ) : (
+        <ItemDetail
+          name={item.name}
+          {...item}
+          quantity={quantity}
+          setQuantity={setQuantity}
+        />
+      )}
     </div>
   );
 }
