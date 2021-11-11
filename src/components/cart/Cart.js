@@ -6,8 +6,9 @@ const Cart = ({ items }) => {
     <div>
       {items.map((currentItem) => {
         const { item } = currentItem;
-        console.log("item", item);
-        return <ItemDetail {...item} quantity={currentItem.quantity} />;
+        return (
+          <ItemDetail key={item.id} {...item} quantity={currentItem.quantity} />
+        );
       })}
     </div>
   );

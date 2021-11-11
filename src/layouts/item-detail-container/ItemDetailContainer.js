@@ -22,7 +22,7 @@ function ItemDetailContainer() {
           console.log("No item");
           return;
         }
-        setItem({ id: document, ...document.data() });
+        setItem({ id: document.id, ...document.data() });
       })
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));
