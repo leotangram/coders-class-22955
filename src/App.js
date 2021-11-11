@@ -8,17 +8,14 @@ function App() {
   const [isCondition, setIsCondition] = useState(true);
   const [showConditionalRendering, setShowConditionalRendering] =
     useState(true);
-    const [otherState, setOtherState] = useState(false)
+  const [otherState, setOtherState] = useState(false);
 
   const handleCondition = () => setIsCondition(!isCondition);
 
   const handleShowConditionalRendering = () =>
     setShowConditionalRendering(!showConditionalRendering);
 
-  const handleUpdateOtherState = () =>
-  setOtherState(!otherState);
-
-  console.log({otherState})
+  const handleUpdateOtherState = () => setOtherState(!otherState);
 
   return (
     <div className="App">

@@ -2,14 +2,23 @@ import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import ItemCount from "../item-count/ItemCount";
+import Image from "../image/Image";
 
-const ItemDetail = ({ id, image, name, quantity, setQuantity }) => {
+const ItemDetail = ({
+  id,
+  image,
+  name,
+  price,
+  quantity,
+  setQuantity,
+  stock,
+}) => {
   const location = useLocation();
 
   const { addItem } = useContext(CartContext);
 
   const handleAddItem = () => {
-    const item = { id, image, name };
+    const item = { id, image, name, price, stock };
     addItem({ item, quantity });
   };
 
@@ -17,7 +26,7 @@ const ItemDetail = ({ id, image, name, quantity, setQuantity }) => {
     <div>
       <h3>ItemDetail</h3>
       <h4>{name}</h4>
-      <img src={image} alt={name} />
+      <Image image={image} name={name} />
       {location.pathname === "/cart" ? null : (
         <>
           <ItemCount quantity={quantity} setQuantity={setQuantity} />
